@@ -1,37 +1,44 @@
 # ASC-project
-Entropia limbii romane
+
+Entropia limbii romane.
 
 ## Autori
 
 * [Gatej Andrei](https://github.com/Andrei0872)
-* Izotova Daria
+* [Izotova Daria](https://github.com/Daria602)
+
+---
 
 ## Utilizare
 
-## Plan
+1. Copiati repo-ul in masina locala
 
-* we get some texts from recent news and set it as data-base
-* determine the frequency for each letter of the text; its prob. will be `prob(char) = freq(char) / text.length`
-* entropy (use formula)
-* output the results to a file called `output.txt`
-lui ana ii place analiza matematica (12)
-p(a) = how many times it app/how many in total
+```bash
+git clone https://github.com/dariaASC/ASC-project.git
+```
 
+2. Rulati programul folosind
 
-a   b c ... e .. m  n ... r
-| \              e  a
-n  r             r  a
-a  |             e
-   e
-   | \
-   a  e
+*Important*: inainte de a rula programul, poate ca ati vrea sa modificati valoarea variabilei `grpLenBoundary` din `main.py`. Valoarea maxima folosita de noi a fost `21`(grupul maxim de litere avand lungimea `20`) si programul a fost executat pana la final, cu mentiunea ca a durat ceva mai mult de 10 secunde.
 
-  
-the structure of a node
+```bash
+python main.py
+```
 
-Node {
-  letter: '',
-  freq: number,
-  children: []Node,
-  timesMarkedAsEndOfWord: number // 0 - default value
-}
+---
+
+## Cum functioneaza
+
+### Pseudocod
+
+```
+content = readFile('input.txt')
+content = content.replacePunctuationMarks().adjustSpacesAndNewLines()
+
+words = content.SplitIntoWords()
+
+for word in words
+  countFrequencyOfWord
+  computeEntropyForTheCurrentWord
+  printComputedEntropy
+```
