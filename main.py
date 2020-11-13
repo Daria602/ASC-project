@@ -19,6 +19,33 @@ grpLenBoundary = 21
 
 print("The maximum length of a group of letters is ", grpLenBoundary - 1)
 
+prevRawEntropy = None
+
+for m in range(1,grpLenBoundary):
+  freq = {}
+
+  for i in range(0, contentLen):
+    if len(content[i:i+m]) < m:
+        break
+    if content[i:i+m] not in freq:
+        freq[content[i:i+m]] = 1
+    else:
+        freq[content[i:i+m]] += 1
+  
+  total = contentLen - m + 1
+  freq.update((x, (y/total) * (math.log2(y/total))) for x, y in freq.items())
+  entropy = -(sum(freq.values()))
+  
+  result = None
+
+  if m == 1:
+    result = entropy
+  else:
+    result = entropy - prevRawEntropy
+  
+  prevRawEntropy = entropy
+  print("Entropy for combinations of every ", m, "letters is ", result)
+
 content = content.split(' ')
 contentLen = len(content)
 
